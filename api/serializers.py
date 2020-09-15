@@ -29,19 +29,19 @@ class EmployeeDeSerializer(serializers.Serializer):
         }
     )
     password = serializers.CharField()
-    # phone = serializers.CharField(min_length=11,required=True)
-    # re_pwd = serializers.CharField()
-    # def validate_username(self, value):
-    #     # print("1111", value, type(value))
-    #     if "小" in value:
-    #         raise exceptions.ValidationError("用户名有误")
-    #
-    #     return value
-    # def validate(self, attrs):
-    #     pwd = attrs.get("password")
-    #     re_pwd = attrs.pop("re_pwd")
-    #     if pwd != re_pwd:
-    #         raise exceptions.ValidationError("两次密码不一致")
-    #     return attrs
+    phone = serializers.CharField(min_length=11,required=True)
+    re_pwd = serializers.CharField()
+    def validate_username(self, value):
+        # print("1111", value, type(value))
+        if "小" in value:
+            raise exceptions.ValidationError("用户名有误")
+
+        return value
+    def validate(self, attrs):
+        pwd = attrs.get("password")
+        re_pwd = attrs.pop("re_pwd")
+        if pwd != re_pwd:
+            raise exceptions.ValidationError("两次密码不一致")
+        return attrs
     def create(self,validated_data):
         return Employee.objects.create(**validated_data)

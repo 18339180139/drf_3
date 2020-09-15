@@ -23,5 +23,5 @@ from drf_3 import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT}),
-    path(r"api/",include("api.urls"))
+    path("api/",include("api.urls"))
 ]
